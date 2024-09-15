@@ -5,3 +5,19 @@ Spring Boot validate Request Body for Signup Request payload with following fiel
     graduationDate: required and in the past.
     password: required and 8 characters long and combination of uppercase letters, lowercase letters, numbers, special characters.
     address (nested object): required and its fields are valid.
+
+API:
+    POST: http://localhost:8080/api/auth/signup
+    request body:
+        {
+            "username": "bezkoder",
+            "email": "user@bezkoder.com",
+            "age": 19,
+            "graduationDate": "2021-05-21",
+            "password": "Bezkoder@123",
+            "confirmPassword": "Bezkoder@123",
+            "address": {
+                "city": "New York",
+                "street": "Franklin St"
+            }
+        }
