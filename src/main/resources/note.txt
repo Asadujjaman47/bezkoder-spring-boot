@@ -3,3 +3,12 @@ Custom Validation for Password:
 
         - @StrongPassword: check if string is 8 characters long and combination of uppercase letters, lowercase letters, numbers, special characters.
         - @PasswordMatching: check if the password and confirm password are the same.
+API:
+    POST: http://localhost:8080/api/auth/signup
+    request body:
+        {
+            "username": "bezkoder",
+            "email": "user@bezkoder.com",
+            "password": "Bezkoder@123",
+            "confirmPassword": "Bezkoder@123"
+        }
