@@ -1,0 +1,5 @@
+Custom Validation for Password:
+    implement 2 Spring Boot custom validation annotations:
+
+        - @StrongPassword: check if string is 8 characters long and combination of uppercase letters, lowercase letters, numbers, special characters.
+        - @PasswordMatching: check if the password and confirm password are the same.
