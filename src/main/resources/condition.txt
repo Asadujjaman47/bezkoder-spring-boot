@@ -1,0 +1,7 @@
+Spring Boot validate Request Body for Signup Request payload with following fields:
+    username: required and has a size between the specified minimum and maximum.
+    email: required and valid email format.
+    age: required and equal or greater than 18.
+    graduationDate: required and in the past.
+    password: required and 8 characters long and combination of uppercase letters, lowercase letters, numbers, special characters.
+    address (nested object): required and its fields are valid.
