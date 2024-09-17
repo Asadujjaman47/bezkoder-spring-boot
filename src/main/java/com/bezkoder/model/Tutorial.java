@@ -1,6 +1,7 @@
 package com.bezkoder.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tutorials")
@@ -10,6 +11,7 @@ public class Tutorial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotBlank(message = "Title is mandatory")
     @Column(name = "title")
     private String title;
 

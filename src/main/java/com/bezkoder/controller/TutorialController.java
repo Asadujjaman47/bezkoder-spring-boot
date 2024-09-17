@@ -3,6 +3,7 @@ package com.bezkoder.controller;
 import com.bezkoder.exception.ResourceNotFoundException;
 import com.bezkoder.model.Tutorial;
 import com.bezkoder.repository.TutorialRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class TutorialController {
     }
 
     @PostMapping("/tutorials")
-    public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
+    public ResponseEntity<Tutorial> createTutorial(@Valid @RequestBody Tutorial tutorial) {
 
         Tutorial _tutorial = tutorialRepository.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
 
@@ -69,6 +70,10 @@ public class TutorialController {
 
     @DeleteMapping("/tutorials/{id}")
     public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+
+        // Check if the tutorial exists
+        Tutorial tutorial = tutorialRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tutorial not found with id = " + id));
 
         tutorialRepository.deleteById(id);
 
