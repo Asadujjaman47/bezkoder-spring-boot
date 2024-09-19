@@ -1,0 +1,32 @@
+First Create some tutorials:
+    POST /api/tutorials
+        body:
+            {
+                "title": "",
+                "description": ""
+            }
+
+Show all tutorials:
+    GET /api/tutorials
+
+Create new Details entity:
+    POST /api/tutorials/{id}/details
+        body:
+            {
+                "createdBy": ""
+            }
+
+Retrieve Details of specific Tutorial:
+    GET /api/tutorials/{id}/details
+    OR  /details/{id}
+
+Update Details of specific Tutorial:
+    PUT /api/details/{id}
+        body:
+            {
+                "createdBy": ""
+            }
+
+Delete Details of specific Tutorial:
+    DELETE /api/api/details/{id}
+    DELETE /api/tutorials/{id}/details
