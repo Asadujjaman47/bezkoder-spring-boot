@@ -1,0 +1,40 @@
+First Create some tutorials:
+    POST /api/tutorials
+        body:
+            {
+                "title": "",
+                "description": ""
+            }
+
+Show all tutorials:
+    GET /api/tutorials
+
+– Create a new Tag, assign to a Tutorial:
+    POST /api/tutorials/[:id]/tags
+        body:
+            {
+                "name": "Java"
+            }
+
+– Add an existing Tag to a Tutorial:
+    POST /api/tutorials/[:id]/tags
+            body:
+            {
+                "id": "1"
+            }
+
+– Retrieve all Tags of a Tutorial:
+    GET /api/tutorials/[:id]/tags
+
+– Retrieve all Tutorials of a Tag:
+    GET /api/tags/[:id]/tutorials
+
+– Retrieve all Tutorials:
+    GET /api/tutorials
+
+– Delete a Tag from a Tutorial:
+    DELETE /api/tutorials/[:id]/tags/[:id]
+
+– Retrieve a Tutorial with its Tags:
+    GET /api/tutorials/[:id]
+
