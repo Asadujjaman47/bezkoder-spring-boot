@@ -1,0 +1,36 @@
+First Create some tutorials:
+    POST /api/tutorials
+        body:
+            {
+                "title": "",
+                "description": ""
+            }
+
+Show all tutorials:
+    GET /api/tutorials
+
+Create new Comments
+    POST  /api/tutorials/{id}/comments
+        body:
+            {
+                "content": ""
+            }
+
+Retrieve a Tutorial with Comments array:
+    GET /api/tutorials/{id}
+
+Retrieve all Comments of specific Tutorial
+    GET /api/tutorials/{id}/comments
+
+Delete all Comments of specific Tutorial
+    DELETE /api/tutorials/{id}/comments
+
+Delete a Tutorial
+    DELETE /api/tutorials/{id}
+
+Delete a Comment by id
+    DELETE /api/comments/{id}
+
+Retrieve all Tutorials after that
+    GET /api/tutorials
+
