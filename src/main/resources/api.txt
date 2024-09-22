@@ -1,0 +1,28 @@
+First Create some tutorials:
+    POST /api/tutorials
+        body:
+            {
+                "title": "",
+                "description": ""
+            }
+
+Show all tutorials:
+    GET /api/tutorials
+
+– Update some Tutorials:
+    POST /api/tutorials/[:id]/comments
+        body:
+            {
+                "title": "JavaScript",
+                "description": "JavaScript Tutorials",
+                "published": true
+            }
+
+– Retrieve all Comments of specific Tutorial:
+    GET /api/tutorials/[:id]/comments
+
+– Delete all Comments of specific Tutorial:
+    DELETE /api/tutorials/[:id]/comments
+
+– Delete a Tutorial:
+    DELETE /api/tutorials/[:id]

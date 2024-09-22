@@ -14,4 +14,10 @@ public class Tutorial {
     private String description;
     private boolean published;
 
+    public Tutorial(String title, String description, boolean published) {
+        this.title = title;
+        this.description = description;
+        this.published = published;
+    }
+
 }
