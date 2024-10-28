@@ -1,0 +1,39 @@
+Cookies base AUTH:
+
+Public route:
+    GET /api/test/all
+
+Register for admin or mod:
+    POST /api/auth/signup
+    {
+        "username": "test",
+        "email": "test@test.com",
+        "password": "",
+        "role": ["admin", "mod", "user"]
+    }
+
+Register for user:
+    POST /api/auth/signup
+    {
+        "username": "test",
+        "email": "test@test.com",
+        "password": ""
+    }
+
+Login:
+    POST /api/auth/signin
+    {
+        "username": "test",
+        "password": ""
+    }
+
+Access Role base:
+    GET /api/test/user
+    GET /api/test/mod
+    GET /api/test/admin
+
+Logout:
+    GET /api/auth/logout
+
+
+

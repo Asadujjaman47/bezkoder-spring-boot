@@ -1,0 +1,14 @@
+First create some roles:
+(http://localhost:8080/h2-ui)
+
+    SELECT * FROM ROLES
+
+    INSERT INTO roles(name) VALUES('ROLE_USER');
+    INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+    INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+    SELECT * FROM USERS;
+
+    SELECT * FROM ROLES;
+
+    SELECT * FROM USER_ROLES;
