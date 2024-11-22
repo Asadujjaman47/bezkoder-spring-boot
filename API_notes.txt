@@ -3,6 +3,8 @@ Cookies base AUTH:
 Public route:
     GET /api/test/all
 
+NB: CREATE SOME ROLE First!!!
+
 Register for admin or mod:
     POST /api/auth/signup
     {
