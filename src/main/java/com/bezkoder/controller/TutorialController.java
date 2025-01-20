@@ -32,16 +32,25 @@ public class TutorialController {
         return Sort.Direction.ASC;
     }
 
-    /*
-    @GetMapping("/tutorials")
-    public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
-        try {
-            List<Tutorial> tutorials = new ArrayList<Tutorial>();
+    @GetMapping("/sortedtutorials")
+    public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(defaultValue = "id,desc") String[] sort) {
 
-            if (title == null)
-                tutorialRepository.findAll().forEach(tutorials::add);
-            else
-                tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
+        try {
+            List<Order> orders = new ArrayList<Order>();
+
+            if (sort[0].contains(",")) {
+                // will sort more than 2 fields
+                // sortOrder="field, direction"
+                for (String sortOrder : sort) {
+                    String[] _sort = sortOrder.split(",");
+                    orders.add(new Order(getSortDirection(_sort[1]), _sort[0]));
+                }
+            } else {
+                // sort=[field, direction]
+                orders.add(new Order(getSortDirection(sort[1]), sort[0]));
+            }
+
+            List<Tutorial> tutorials = tutorialRepository.findAll(Sort.by(orders));
 
             if (tutorials.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -52,7 +61,6 @@ public class TutorialController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    */
 
     @GetMapping("/tutorials")
     public ResponseEntity<Map<String, Object>> getAllTutorialsPage(
@@ -62,26 +70,25 @@ public class TutorialController {
             @RequestParam(defaultValue = "id,desc") String[] sort) {
 
         try {
-            List<Order> orders = new ArrayList<>();
+            List<Order> orders = new ArrayList<Order>();
 
-            if(sort[0].contains(",")) {
+            if (sort[0].contains(",")) {
                 // will sort more than 2 fields
-                // sortOrders="field, direction"
+                // sortOrder="field, direction"
                 for (String sortOrder : sort) {
                     String[] _sort = sortOrder.split(",");
                     orders.add(new Order(getSortDirection(_sort[1]), _sort[0]));
                 }
-            }
-            else {
-                // sort = [field, direction]
+            } else {
+                // sort=[field, direction]
                 orders.add(new Order(getSortDirection(sort[1]), sort[0]));
             }
 
-            List<Tutorial> tutorials = new ArrayList<>();
+            List<Tutorial> tutorials = new ArrayList<Tutorial>();
             Pageable pagingSort = PageRequest.of(page, size, Sort.by(orders));
 
             Page<Tutorial> pageTuts;
-            if(title == null)
+            if (title == null)
                 pageTuts = tutorialRepository.findAll(pagingSort);
             else
                 pageTuts = tutorialRepository.findByTitleContaining(title, pagingSort);
@@ -100,28 +107,13 @@ public class TutorialController {
         }
     }
 
-    /*
     @GetMapping("/tutorials/published")
-    public ResponseEntity<List<Tutorial>> findByPublished() {
-        try {
-            List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
-
-            if (tutorials.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(tutorials, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-     */
-
-    @GetMapping("tutorials/published")
     public ResponseEntity<Map<String, Object>> findByPublished(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size) {
+
         try {
-            List<Tutorial> tutorials = new ArrayList<>();
+            List<Tutorial> tutorials = new ArrayList<Tutorial>();
             Pageable paging = PageRequest.of(page, size);
 
             Page<Tutorial> pageTuts = tutorialRepository.findByPublished(true, paging);
